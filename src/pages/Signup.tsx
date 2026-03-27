@@ -2,17 +2,13 @@ import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
 import signupHero from "@/assets/signup-hero.jpg";
 
-const Signup = () => {
+const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [agreed, setAgreed] = useState(false);
   const [form, setForm] = useState({
-    name: "",
     email: "",
     password: "",
-    website: "",
   });
 
   const handleChange = (field: string, value: string) => {
@@ -21,54 +17,22 @@ const Signup = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Signup submitted:", form);
+    console.log("Login submitted:", form);
   };
 
   return (
     <div className="flex min-h-screen bg-background">
-      {/* Left panel — hero image */}
-      <div className="hidden lg:flex lg:w-[45%] relative overflow-hidden rounded-2xl m-4">
-        <img
-          src={signupHero}
-          alt="Luxury car showroom at golden hour"
-          className="absolute inset-0 w-full h-full object-cover"
-          width={800}
-          height={1024}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-        <div className="relative z-10 flex flex-col justify-between p-10 w-full">
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold text-white font-[var(--font-heading)]">
-              Automia
-            </h2>
-            <Button
-              variant="outline"
-              className="border-white/30 text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm text-sm"
-            >
-              Back to website →
-            </Button>
-          </div>
-          <div className="pb-12">
-            <p className="text-3xl font-semibold text-white font-[var(--font-heading)] leading-tight">
-              Automate Your Sales,
-              <br />
-              Accelerate Growth
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Right panel — form */}
+      {/* Left panel — form */}
       <div className="flex-1 flex items-center justify-center p-6 sm:p-12">
         <div className="w-full max-w-md space-y-8">
           <div>
             <h1 className="text-3xl sm:text-4xl font-bold tracking-tight font-[var(--font-heading)]">
-              Create an account
+              Welcome back
             </h1>
             <p className="mt-2 text-muted-foreground">
-              Already have an account?{" "}
+              Don't have an account?{" "}
               <a href="#" className="text-primary underline underline-offset-4 hover:opacity-80">
-                Log in
+                Sign up
               </a>
             </p>
           </div>
@@ -76,28 +40,10 @@ const Signup = () => {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <Input
-                placeholder="Full name"
-                value={form.name}
-                onChange={(e) => handleChange("name", e.target.value)}
-                className="h-12 bg-muted/50 border-border placeholder:text-muted-foreground"
-              />
-            </div>
-
-            <div>
-              <Input
                 type="email"
                 placeholder="Email"
                 value={form.email}
                 onChange={(e) => handleChange("email", e.target.value)}
-                className="h-12 bg-muted/50 border-border placeholder:text-muted-foreground"
-              />
-            </div>
-
-            <div>
-              <Input
-                placeholder="Website (optional)"
-                value={form.website}
-                onChange={(e) => handleChange("website", e.target.value)}
                 className="h-12 bg-muted/50 border-border placeholder:text-muted-foreground"
               />
             </div>
@@ -119,32 +65,22 @@ const Signup = () => {
               </button>
             </div>
 
-            <div className="flex items-center gap-3">
-              <Checkbox
-                id="terms"
-                checked={agreed}
-                onCheckedChange={(v) => setAgreed(v === true)}
-                className="data-[state=checked]:bg-primary data-[state=checked]:border-primary"
-              />
-              <label htmlFor="terms" className="text-sm text-muted-foreground cursor-pointer">
-                I agree to the{" "}
-                <a href="#" className="text-primary underline underline-offset-4">
-                  Terms & Conditions
-                </a>
-              </label>
+            <div className="flex justify-end">
+              <a href="#" className="text-sm text-primary underline underline-offset-4 hover:opacity-80">
+                Forgot password?
+              </a>
             </div>
 
             <Button
               type="submit"
-              disabled={!agreed}
               className="w-full h-12 text-base font-semibold"
             >
-              Create account
+              Log in
             </Button>
 
             <div className="relative flex items-center gap-4 py-2">
               <div className="flex-1 h-px bg-border" />
-              <span className="text-xs text-muted-foreground">Or register with</span>
+              <span className="text-xs text-muted-foreground">Or continue with</span>
               <div className="flex-1 h-px bg-border" />
             </div>
 
@@ -176,8 +112,40 @@ const Signup = () => {
           </form>
         </div>
       </div>
+
+      {/* Right panel — hero image */}
+      <div className="hidden lg:flex lg:w-[45%] relative overflow-hidden rounded-2xl m-4">
+        <img
+          src={signupHero}
+          alt="Luxury car showroom at golden hour"
+          className="absolute inset-0 w-full h-full object-cover"
+          width={800}
+          height={1024}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+        <div className="relative z-10 flex flex-col justify-between p-10 w-full">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-bold text-white font-[var(--font-heading)]">
+              Automia
+            </h2>
+            <Button
+              variant="outline"
+              className="border-white/30 text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm text-sm"
+            >
+              Back to website →
+            </Button>
+          </div>
+          <div className="pb-12">
+            <p className="text-3xl font-semibold text-white font-[var(--font-heading)] leading-tight">
+              Automate Your Sales,
+              <br />
+              Accelerate Growth
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Signup;
+export default Login;
